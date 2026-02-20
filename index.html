@@ -150,16 +150,18 @@
         .blackhole-active { clip-path: circle(150% at 50% 50%) !important; }
         
         #final-text-sequence { background: #0a0a0a; z-index: 60; color: #fffafb; display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; transition: opacity 2s ease-in-out; }
+        
+        /* ADJUSTED TIMING FOR SLOWER TEXT */
         .fade-text {
             font-family: 'Dancing Script', cursive; font-size: 40px; text-align: center; opacity: 0; position: absolute;
-            width: 100%; padding: 0 20px; box-sizing: border-box; animation: textFadeInOut 4s ease-in-out forwards;
+            width: 100%; padding: 0 20px; box-sizing: border-box; animation: textFadeInOut 6s ease-in-out forwards;
             color: var(--light-color); text-shadow: 0 0 10px rgba(255, 107, 129, 0.5);
         }
         @keyframes textFadeInOut {
             0% { opacity: 0; transform: translateY(20px); }
-            20% { opacity: 1; transform: translateY(0); }
-            80% { opacity: 1; transform: translateY(0); }
-            100% { opacity: 0; transform: translateY(-20px); }
+            15% { opacity: 1; transform: translateY(0); } /* Fades in fast */
+            85% { opacity: 1; transform: translateY(0); } /* Stays visible for a long time */
+            100% { opacity: 0; transform: translateY(-20px); } /* Fades out */
         }
     </style>
 </head>
@@ -420,19 +422,19 @@
         function startTextSequence() {
             const phrases = [
                 "sorry yrr kal kuch jyada hi gussa dila diya tha appko.",
-                "nahi krna chahiye lekin sab hojane ke bad aap reggret feel ho rha hun.",
+                "nahi krna chahiye lekin sab hojane ke bad ab reggret feel ho rha hun.",
                 "mai sirf mazak krna chah rha tha bachi.",
                 "but mai vaada kr rha hun, aise fir kabhi repeat nhi hoga.",
-                "lekin mera pyar krneka tareeka hai esa hai.",
+                "lekin mera pyar krneka tareeka hi esa hai.",
                 "satana, gussa dilana, pareshan krna aise hi hun mai.",
                 "maine try kiya tha flirting seekhne k liye par mere sar se ja rha tha sab.",
                 "mai sabki tarah flirting ya romantic toh nhi hun.",
                 "par mai ye wada jarur de sakta hun ki mere dil sirf aapka hi hai.",
                 "mai ye wada de sakta hun ki mai loyal rahunga.",
                 "mai ye wada de sakta hun ki jab tak aap accept nhi krlete ho tab tak mai wait krta rahunga.",
-                "mai ye wada de sakta hun ki ill orive that all men are not same.",
+                "mai ye wada de sakta hun ki ill prove that all men are not same.",
                 "mai ye wada de sakta hun ki aap mere liye sab kuch ho.",
-                "haan mera oyar krneka tarika alag hai.",
+                "haan mera pyar krneka tarika alag hai.",
                 "par mai appko khush rakhne k liye apna poora dunga.",
                 "jo pyaar aap deserve krte ho usse jyada dene k liye tayyar hun.",
                 "mai ye promise nhi krsakta hun ki mai sabki tarah pyar karunga, par ye de sakta hun ki apne poore dilse pyar karunga"
@@ -446,9 +448,9 @@
                     el.classList.add('fade-text');
                     el.innerText = phrase;
                     container.appendChild(el);
-                    setTimeout(() => { el.remove(); }, 4000);
+                    setTimeout(() => { el.remove(); }, 6000); // ADJUSTED: stays for 6 seconds
                 }, delay);
-                delay += 3800; // Overlap slightly
+                delay += 5500; // ADJUSTED: waits longer before bringing the next sentence
             });
         }
     </script>
